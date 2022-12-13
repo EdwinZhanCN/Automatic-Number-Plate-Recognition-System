@@ -24,9 +24,12 @@ public class Find_Plate_Number_Algorithm {
 			 * Returns the 1st element in the 1st array in ArrayOfPlateResults
 			 * This so you can see your program working
 			 */
-			String chi = ("京渝沪津皖闽甘粤贵琼冀黑豫鄂湘苏赣吉辽青陕鲁晋川云浙桂蒙宁藏新0123456789");
-			String eng = ("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
+//			String chi = ("京渝沪津皖闽甘粤贵琼冀黑豫鄂湘苏赣吉辽青陕鲁晋川云浙桂蒙宁藏新0123456789");
+//			String eng = ("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
 			String[] PlateArray = ArrayOfPlateResults.get(0);
+			/**
+			 * I forget how to do the algorithm here, it should be more reliable.
+			 */
 //			StringBuilder chinese = new StringBuilder(PlateArray[3]);
 //			StringBuilder english = new StringBuilder(PlateArray[2]);
 //			StringBuilder english1 = new StringBuilder(checkValid(english));
@@ -39,27 +42,31 @@ public class Find_Plate_Number_Algorithm {
 //					p2++;
 //				}
 //			}
+			/**
+			 * Easy way instead, trust the OCR :D
+			 */
+			return PlateArray[2];
 		}
 
 		return null;
 
 	}
 
-	public static StringBuilder checkValid(StringBuilder str){
-		if(str.length() > 8){
-			str = new StringBuilder(str.substring(0, 8));
-		}
-		for(int i = 0; i < str.length(); i++){
-			if(str.charAt(i) == ' ' && i != 2){
-				if(i > 2){
-					str = new StringBuilder(str.substring(i - 2));
-				}else{
-					str = new StringBuilder("0" + str.substring(i-2));
-				}
-			}
-		}
-		return str;
-	}
+//	public static StringBuilder checkValid(StringBuilder str){
+//		if(str.length() > 8){
+//			str = new StringBuilder(str.substring(0, 8));
+//		}
+//		for(int i = 0; i < str.length(); i++){
+//			if(str.charAt(i) == ' ' && i != 2){
+//				if(i > 2){
+//					str = new StringBuilder(str.substring(i - 2));
+//				}else{
+//					str = new StringBuilder("0" + str.substring(i-2));
+//				}
+//			}
+//		}
+//		return str;
+//	}
 	
 
 	
