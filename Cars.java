@@ -1,5 +1,6 @@
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.logging.SimpleFormatter;
 
 public class Cars {
@@ -24,6 +25,8 @@ public class Cars {
         String today = (formatter.format(date));
         if(Integer.parseInt(insurance.substring(0,4)) < Integer.parseInt(today.substring(0,4))){
             this.status = "Insurance expire";
+        }else if(Integer.parseInt(insurance.substring(0,4)) > Integer.parseInt(today.substring(0,4))) {
+            this.status = "Insurance OK";
         }else if(Integer.parseInt(insurance.substring(5,7)) < Integer.parseInt(today.substring(5,7))){
             this.status = "Insurance expire";
         } else if (Integer.parseInt(insurance.substring(8)) < Integer.parseInt(today.substring(8))) {
