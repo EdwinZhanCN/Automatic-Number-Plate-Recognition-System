@@ -12,7 +12,7 @@ public class Home {
 	/**
 	 * used to count the number of Photos taken
 	 */
-	
+	public static ArrayList<Cars> array = new ArrayList<>();
 	public static int PhotoNumber = 1;
 	public static String PhotoTime;
 	public static boolean Test = false;
@@ -23,6 +23,7 @@ public class Home {
 	 * @param args
 	 */
 	public static void main(String[] args) {
+		ImportCSV.readFile(array, "Plate_Database.csv");
 		// TODO Auto-generated method stub
 
 		System.out.println("**********************************************************************");
@@ -72,6 +73,8 @@ public class Home {
 		
 		Camera_System Cameras = new Camera_System(1);
 
+
+
 		/**
 		 * For loop for each photo in the directory
 		 */
@@ -89,7 +92,11 @@ public class Home {
 				/**
 				 * Prints the Number Plate out
 				 */
-				
+				for(Cars car: array){
+					if(T.findSimilarity(car.getPlateNumber(),TestResult) > 0.80){
+
+					}
+				}
 				System.out.println("Plate Read: " + TestResult);
 
 			} catch (Exception e) {
@@ -99,6 +106,8 @@ public class Home {
 		}
 
 	}
+
+	public static File createCSVFile
 
 	/**
 	 * Runs a live test constantly taking photos until it reaches the limit
