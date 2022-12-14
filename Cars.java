@@ -14,6 +14,7 @@ public class Cars {
     private String year;
 
     public Cars(String plateNumber, String city, String prov, String owner, String brand, String insurance, String year){
+        this.plateNumber = plateNumber;
         this.city = city;
         this.prov = prov;
         this.owner = owner;
@@ -68,6 +69,9 @@ public class Cars {
         return year;
     }
 
+    public String[] getInfo(){
+        return new String[]{plateNumber,city,prov,owner,brand,insurance,year};
+    }
     @Override
     public String toString() {
         return "Plate Number: " + plateNumber;

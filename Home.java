@@ -1,11 +1,14 @@
 
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Home {
 
@@ -73,6 +76,12 @@ public class Home {
 		
 		Camera_System Cameras = new Camera_System(1);
 
+		/**
+		 * create csv file.
+		 */
+		Date today = new Date();
+		SimpleDateFormat formatter = new SimpleDateFormat("MM-dd 'at' mm:ss");
+		File csvFile = new File("Photos\\NumberPlate_TestResult" + formatter.format(today)+ ".csv");
 
 
 		/**
@@ -88,16 +97,40 @@ public class Home {
 				 */
 				
 				String TestResult = RunFindCorrectPlateAlgorithm(TestInputFile, Cameras);
-				
+
+
 				/**
 				 * Prints the Number Plate out
 				 */
+				System.out.println("Plate Read: " + TestResult);
+
+				/**
+				 * Traverse the PlateNumber CSV and write the
+				 */
 				for(Cars car: array){
 					if(T.findSimilarity(car.getPlateNumber(),TestResult) > 0.80){
+						//create the fileWriter with append method.
+						FileWriter fileWriter = new FileWriter(csvFile,true);
+						//get the String[] info from the found plate
+						String[] data = car.getInfo();
+						StringBuilder line= new StringBuilder();
 
+						//create line Data
+						for (int i = 0; i < data.length; i++) {
+							line.append("\"");
+							line.append(data[i].replaceAll("\"","\"\""));
+							line.append("\"");
+							if (i != data.length - 1) {
+								line.append(',');
+							}
+						}
+						line.append("\n");
+						//Write the lineData into File.
+						fileWriter.write(line.toString());
+						fileWriter.close();
+						break;
 					}
 				}
-				System.out.println("Plate Read: " + TestResult);
 
 			} catch (Exception e) {
 				System.out.println(e);
@@ -107,7 +140,6 @@ public class Home {
 
 	}
 
-	public static File createCSVFile
 
 	/**
 	 * Runs a live test constantly taking photos until it reaches the limit
